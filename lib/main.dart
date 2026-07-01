@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'firebase_options.dart';
-import 'ui/menu_screen.dart';
+import 'ui/tables_screen.dart';
+import 'ui/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,8 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cafe POS',
-      home: const MenuScreen(),
-      debugShowCheckedModeBanner: false,
+      home: const HomeScreen(),
     );
   }
 }
