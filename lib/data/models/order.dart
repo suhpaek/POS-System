@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class OrderItem {
   final String menuItemid;
   final String name;
@@ -39,28 +41,30 @@ class Order {
   final int tableNumber;
   final List<OrderItem> items;
   final String status;
+  final DateTime? paidAt;
 
   Order({
     required this.id,
     required this.tableNumber,
     required this.items,
-    this.status = 'pending',
+    this.status = 'new',
+    this.paidAt,
   });
 
-  double get totalPrice {
-    return items.fold(0, (sum, item) => sum + (item.priceAtOrder * item.quantity));
-  }
+  double get totalPrice =>
+      items.fold(0, (sum, item) => sum + item.priceAtOrder * item.quantity);
 
   factory Order.fromFirestore(String id, Map<String, dynamic> data) {
     final itemsList = (data['items'] as List<dynamic>)
-        .map((itemData) => OrderItem.fromMap(itemData as Map<String, dynamic>))
+        .map((item) => OrderItem.fromMap(item as Map<String, dynamic>))
         .toList();
-        
+
     return Order(
       id: id,
       tableNumber: data['tableNumber'] as int,
       items: itemsList,
-      status: data['status'] as String? ?? 'pending',
+      status: data['status'] as String? ?? 'new',
+      paidAt: (data['paidAt'] as Timestamp?)?.toDate(),
     );
   }
 
@@ -69,6 +73,7 @@ class Order {
       'tableNumber': tableNumber,
       'items': items.map((item) => item.toMap()).toList(),
       'status': status,
+      'paidAt': paidAt != null ? Timestamp.fromDate(paidAt!) : null,
     };
   }
 }

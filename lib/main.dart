@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cafe POS',
       home: const HomeScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -11,13 +11,25 @@ class MenuRepository {
 
   Stream<List<MenuItem>> watchMenuItems() {
     return _menuCollection.snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) {
-        return MenuItem.fromFirestore(doc.id, doc.data());
-      }).toList();
+      return snapshot.docs
+          .map((doc) => MenuItem.fromFirestore(doc.id, doc.data()))
+          .toList();
     });
   }
 
   Future<void> addMenuItem(MenuItem item) async {
     await _menuCollection.add(item.toFirestore());
+  }
+
+  Future<void> updateMenuItem(MenuItem item) async {
+    await _menuCollection.doc(item.id).update(item.toFirestore());
+  }
+
+  Future<void> deleteMenuItem(String itemId) async {
+    await _menuCollection.doc(itemId).delete();
+  }
+
+  Future<void> toggleAvailability(String itemId, bool isAvailable) async {
+    await _menuCollection.doc(itemId).update({'isAvailable': isAvailable});
   }
 }

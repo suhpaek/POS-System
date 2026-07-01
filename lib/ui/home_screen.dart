@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'tables_screen.dart';
 import 'kitchen_screen.dart';
 import 'checkout_screen.dart';
+import 'admin_menu_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -43,6 +44,17 @@ class HomeScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const CheckoutScreen()),
+                );
+              },
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton.icon(
+              icon: const Icon(Icons.admin_panel_settings),
+              label: const Text('Manage Menu'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AdminMenuScreen()),
                 );
               },
             ),
