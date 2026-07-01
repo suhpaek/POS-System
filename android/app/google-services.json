@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "423467755843",
+    "project_id": "cafe-pos-system-251f5",
+    "storage_bucket": "cafe-pos-system-251f5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423467755843:android:f264b25e0379349d8d67f6",
+        "android_client_info": {
+          "package_name": "com.example.cafe_pos_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvkuOL8PqZTKYNcEpsTnai7ToA1smftrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
